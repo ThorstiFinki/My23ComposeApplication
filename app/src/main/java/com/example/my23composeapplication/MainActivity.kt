@@ -21,7 +21,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyApp{
                 var tipApp = TipApp()
-                tipApp.TopHeader()
+             //   tipApp.TopHeader()
+                tipApp.MainContent()
                 }
         }
     }
