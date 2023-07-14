@@ -4,13 +4,21 @@ import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.BrokenImage
+import androidx.compose.material.icons.filled.RememberMe
+import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -28,6 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.my23composeapplication.components.InputField
+import com.example.my23composeapplication.widgets.RoundIconButton
 
 class TipApp {
     // @Preview
@@ -73,7 +82,7 @@ class TipApp {
     }
 
 
-    @Preview
+ //   @Preview
     @Composable
     fun MainContent() {
         BillForm() { billAmt ->
@@ -84,6 +93,7 @@ class TipApp {
     }
 
     @OptIn(ExperimentalComposeUiApi::class)
+    @Preview
     @Composable
     fun BillForm(
         modifier: Modifier = Modifier,
@@ -104,9 +114,14 @@ class TipApp {
             border = BorderStroke(width = 1.dp, color = Color.LightGray)
         )
         {
-            Column() {
+            Column(
+                modifier = Modifier.padding(6.dp),
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.Start
+            ) {
 
-                InputField(valueState = totalBillState,
+                InputField(
+                    valueState = totalBillState,
                     labelId = "Enter Bill",
                     enabled = true,
                     isSingleLine = true,
@@ -115,8 +130,33 @@ class TipApp {
                         onValChange(totalBillState.value.trim())
 
                         keyboardController?.hide()
+                    })
+                if (validState) {
+                    Row(
+                        modifier = Modifier.padding(3.dp),
+                        horizontalArrangement = Arrangement.Start
+                    ) {
+                        Text(
+                            text = "Split", modifier = Modifier.align(
+                                alignment = Alignment.CenterVertically
+                            )
+                        )
+                        Spacer(modifier = Modifier.width(120.dp))
+                        Row(modifier = Modifier.padding(horizontal = 3.dp),
+                        horizontalArrangement = Arrangement.End) {
+                            RoundIconButton(
+                                imageVector = Icons.Default.Remove,
+                                onClick = {  })
+
+                            RoundIconButton(
+                                imageVector = Icons.Default.Add,
+                                onClick = {  })
+                        }
                     }
-                )
+
+                } else {
+
+                }
             }
 
 
