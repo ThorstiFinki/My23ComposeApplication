@@ -8,7 +8,7 @@ android {
     compileSdk 33
     defaultConfig {
         applicationId "com.example.my23composeapplication"
-        minSdk 23
+        minSdk 31
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -65,4 +65,7 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
     //Icons
     implementation "androidx.compose.material:material-icons-extended"
+    def nav_version = "2.6.0"
+    implementation "androidx.navigation:navigation-compose:$nav_version"
+    implementation("io.coil-kt:coil-compose:2.4.0")
 }

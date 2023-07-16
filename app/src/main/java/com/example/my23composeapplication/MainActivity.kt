@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.my23composeapplication.chapters.MovieApp
+import com.example.my23composeapplication.navigation.MovieNavigation
 import com.example.my23composeapplication.ui.theme.My23ComposeApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -32,57 +33,21 @@ val movieApp = MovieApp()
         super.onCreate(savedInstanceState)
         setContent {
             MyApp {
-                movieApp.MainContent()
+              MovieNavigation()
             }
         }
     }
 
 
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-    @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun MyApp(content: @Composable () -> Unit) {
 
         My23ComposeApplicationTheme {
-
-            Scaffold(topBar = {
-                TopAppBar(
-                    colors = TopAppBarDefaults.mediumTopAppBarColors(
-                        containerColor = Color.Magenta
-                    ),
-                    title = { Text(text = "Movies") },
-                    scrollBehavior = pinnedScrollBehavior()
-
-                )
-            },
-                bottomBar = {
-                    BottomAppBar(
-
-                        containerColor = Color.Magenta
-                    )
-                    { Text(text = "Bottom") }
-                },
-                contentColor = Color.Black,
-
-                content = { innerPadding ->
-                    Column(
-                        modifier = Modifier
-                            .padding(innerPadding)
-                            .wrapContentSize()
-                    ) {
-                        content()
-                        Text(text = "${innerPadding.toString()}")
-                    }
-
-
-                })
-
+                content()
 
         }
     }
-
-
-
 
         //
         @Preview
@@ -91,7 +56,7 @@ val movieApp = MovieApp()
             My23ComposeApplicationTheme {
 
                 MyApp {
-                    movieApp.MainContent()
+                    MovieNavigation()
                     //var firstClick = FirstClick()
                     // firstClick.MyFirstClickApp()
                 }
